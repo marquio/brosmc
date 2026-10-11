@@ -1,0 +1,52 @@
+# Build output
+build/
+
+# Dependencies
+node_modules/
+
+# Environment
+.env
+.env.local
+.env.production
+.env.development
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Vercel
+.vercel/
+
+# Next.js (inside site/)
+.next/
+out/
+
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Playwright
+playwright-cli-screenshots/
+*.png
+!docs/**/*.png
+!site/public/**/*.png
+!site/src/app/icon.png
+
+# Written by the improve-animations / prototype skills
+plans/
+prototypes/
+
+# Python bytecode from bundled skills
+__pycache__/
+*.pyc
+
+# Local Playwright CLI config/output (container-specific)
+.playwright/
+.playwright-cli/
