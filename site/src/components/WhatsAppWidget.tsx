@@ -87,7 +87,7 @@ export function WhatsAppWidget() {
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
         aria-controls="whatsapp-panel"
-        className="btn bg-[#1fa855] !py-3.5 text-white shadow-lg shadow-[#1fa855]/30 hover:bg-[#1a944a]"
+        className={`btn isolate bg-[#1fa855] !py-3.5 text-white shadow-lg shadow-[#1fa855]/30 hover:bg-[#1a944a] ${open ? "" : "wa-pulse"}`}
       >
         <WhatsAppIcon className="size-6" />
         <span>

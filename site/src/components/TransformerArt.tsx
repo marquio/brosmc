@@ -13,7 +13,9 @@ export function TransformerArt({ className }: { className?: string }) {
     >
       {/* líneas de transmisión */}
       <path d="M-20 70 Q 260 130 540 60" opacity=".5" />
+      <path d="M-20 70 Q 260 130 540 60" className="current-flow" strokeWidth="2.2" />
       <path d="M-20 95 Q 260 160 540 88" opacity=".35" />
+      <path d="M-20 95 Q 260 160 540 88" className="current-flow" strokeWidth="1.8" style={{ animationDelay: "-1.2s" }} />
       {/* bushings de alta tensión */}
       {[170, 260, 350].map((x) => (
         <g key={x}>

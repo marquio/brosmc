@@ -18,6 +18,8 @@ import { Header } from "@/components/Header";
 import { Reveal } from "@/components/Reveal";
 import { TransformerArt } from "@/components/TransformerArt";
 import { ProductTabs } from "@/components/ProductTabs";
+import { CompanyTabs } from "@/components/CompanyTabs";
+import { CountUp } from "@/components/CountUp";
 import { WhatsAppWidget } from "@/components/WhatsAppWidget";
 import { cellphones, clients, nav, services, site, whatsappHref } from "@/lib/site";
 
@@ -78,7 +80,7 @@ export default function Home() {
                 fill
                 priority
                 sizes="(min-width: 1280px) 1280px, 100vw"
-                className="object-cover object-[70%_40%]"
+                className="hero-drift object-cover object-[70%_40%]"
               />
               <div
                 aria-hidden
@@ -86,7 +88,7 @@ export default function Home() {
               />
 
               <div className="relative grid gap-10 px-6 pb-40 pt-14 sm:px-10 sm:pt-20 md:pb-44 lg:grid-cols-[1.25fr_1fr] lg:px-14 lg:pb-52 lg:pt-28">
-                <Reveal>
+                <div className="hero-in">
                   <p className="mb-6 inline-flex items-center gap-2 rounded-full bg-primary-foreground/12 px-3.5 py-1.5 text-sm font-medium backdrop-blur-sm">
                     <span className="size-1.5 rounded-full bg-accent" aria-hidden />
                     Empresa peruana · Lima
@@ -113,7 +115,7 @@ export default function Home() {
                       Ver productos
                     </a>
                   </div>
-                </Reveal>
+                </div>
 
                 <Reveal delay={0.15} className="hidden items-end justify-end lg:flex">
                   <figure className="w-64 rounded-2xl bg-primary-foreground/15 p-2 backdrop-blur-md">
@@ -146,7 +148,7 @@ export default function Home() {
             <div className="relative -mt-28 ml-auto w-[calc(100%-1.5rem)] rounded-tl-[1.75rem] bg-background pl-3 pt-3 sm:w-auto sm:max-w-[40rem] md:-mt-32">
               <dl className="grid grid-cols-3 gap-4 rounded-2xl bg-surface p-5 shadow-[0_1px_0_var(--border)] sm:gap-8 sm:p-7">
                 {[
-                  { v: String(clients.length), l: "Empresas que confiaron en nosotros" },
+                  { v: <CountUp to={clients.length} />, l: "Empresas que confiaron en nosotros" },
                   { v: "IEC 76", l: "Norma internacional que cumplimos" },
                   { v: "8–19 h", l: "Horario de atención" },
                 ].map((s) => (
@@ -223,11 +225,12 @@ export default function Home() {
 
             <Reveal delay={0.1}>
               <ul className="mt-14 grid overflow-hidden rounded-3xl bg-surface sm:grid-cols-2 lg:grid-cols-3">
-                {features.map(({ icon: Icon, title, text }) => (
+                {features.map(({ icon: Icon, title, text }, i) => (
                   <li
                     key={title}
                     className="border-b p-7 sm:p-9 sm:[&:nth-child(odd)]:border-r lg:[&:nth-child(odd)]:border-r-0 lg:[&:not(:nth-child(3n))]:border-r lg:[&:nth-last-child(-n+3)]:border-b-0"
                   >
+                    <Reveal delay={0.06 * i}>
                     <span className="inline-flex size-9 items-center justify-center rounded-lg bg-accent/25 text-primary">
                       <Icon aria-hidden className="size-[1.1rem]" />
                     </span>
@@ -235,6 +238,7 @@ export default function Home() {
                     <p className="mt-2 max-w-[38ch] text-[0.95rem] leading-relaxed text-muted-foreground">
                       {text}
                     </p>
+                    </Reveal>
                   </li>
                 ))}
               </ul>
@@ -277,10 +281,10 @@ export default function Home() {
         <section id="empresa" aria-labelledby="empresa-titulo" className="px-3 sm:px-6">
           <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[1.75rem] bg-primary-strong px-6 py-section text-primary-foreground sm:px-10 lg:px-14">
             <TransformerArt className="pointer-events-none absolute -bottom-24 -left-24 h-[30rem] text-primary-foreground/[0.07]" />
-            <div className="relative grid gap-12 lg:grid-cols-[1.15fr_1fr] lg:items-center">
+            <div className="relative grid gap-12 lg:grid-cols-[1.15fr_1fr] lg:items-start">
               <Reveal>
                 <p className="text-sm font-semibold uppercase tracking-[0.14em] text-accent">
-                  Empresa · Reseña histórica
+                  Empresa
                 </p>
                 <h2
                   id="empresa-titulo"
@@ -289,20 +293,8 @@ export default function Home() {
                   Socio de las principales empresas eléctricas{" "}
                   <span className="font-normal text-primary-foreground/60">e industrias del Perú.</span>
                 </h2>
-                <div className="mt-8 space-y-5 text-fluid-base leading-relaxed text-primary-foreground/80">
-                  <p>
-                    <strong className="font-semibold text-primary-foreground">ALC Energy S.A.C.</strong>{" "}
-                    es una empresa peruana dedicada a la fabricación, mantenimiento, venta y
-                    reparación de todo tipo de transformadores eléctricos de distribución en aceite
-                    y tipo seco, tableros eléctricos, subestaciones, estabilizadores y UPS. Cumplimos
-                    estrictamente con normas nacionales (ITINTEC 370.002) e internacionales (IEC PUB
-                    76), y garantizamos la calidad de todos nuestros equipos.
-                  </p>
-                  <p>
-                    Nuestro compromiso es entregar productos confiables técnica y económicamente. El
-                    diseño compacto de nuestros equipos nos permite ofrecer los mejores precios en el
-                    mercado nacional e internacional.
-                  </p>
+                <div className="mt-8">
+                  <CompanyTabs />
                 </div>
                 <ul className="mt-8 flex flex-wrap gap-2 text-sm" aria-label="Normas que cumplimos">
                   <li className="rounded-full bg-primary-foreground/10 px-3.5 py-1.5">IEC PUB 76</li>
@@ -310,7 +302,7 @@ export default function Home() {
                   <li className="rounded-full bg-primary-foreground/10 px-3.5 py-1.5">RUC {site.ruc}</li>
                 </ul>
               </Reveal>
-              <Reveal delay={0.1}>
+              <Reveal delay={0.1} className="lg:sticky lg:top-28">
                 <div className="rounded-[1.5rem] bg-[#eceef0] p-6 sm:p-10">
                   <Image
                     src="/images/transformador-500kva.jpg"
@@ -349,14 +341,14 @@ export default function Home() {
                   className={`${i < 2 ? "lg:col-span-3" : "lg:col-span-2"} ${i === 0 ? "col-span-2" : ""}`}
                 >
                   <Reveal delay={0.05 * i} className="h-full">
-                    <figure className="group relative h-full overflow-hidden rounded-3xl bg-muted">
+                    <figure className="zoom-card group relative h-full overflow-hidden rounded-3xl bg-muted">
                       <Image
                         src={sv.img}
                         alt={sv.title}
                         width={489}
                         height={305}
                         sizes="(min-width: 1024px) 40vw, 50vw"
-                        className={`w-full object-cover ${i < 2 ? "aspect-[16/10]" : "aspect-[4/3.4]"}`}
+                        className={`zoom-img w-full object-cover ${i < 2 ? "aspect-[16/10]" : "aspect-[4/3.4]"}`}
                       />
                       <figcaption className="absolute inset-x-0 bottom-0 bg-[linear-gradient(transparent,oklch(18%_0.03_255/0.85))] p-4 pt-12 text-sm font-semibold text-white sm:p-5 sm:pt-14 sm:text-base">
                         {sv.title}
