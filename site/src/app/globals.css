@@ -1,0 +1,96 @@
+@import "tailwindcss";
+
+/* ALC Energy — paleta industrial: acero/grafito + ámbar de alta tensión.
+   (No usa el morado del logo a propósito.) */
+:root {
+  --background: oklch(97.4% 0.004 250);
+  --surface: oklch(99.4% 0.002 250);
+  --foreground: oklch(21% 0.03 255);
+  --primary: oklch(31% 0.065 255);
+  --primary-strong: oklch(24% 0.05 255);
+  --primary-foreground: oklch(98% 0.004 250);
+  --accent: oklch(81% 0.155 78);
+  --accent-strong: oklch(72% 0.16 65);
+  --accent-foreground: oklch(21% 0.03 255);
+  --muted: oklch(94.5% 0.006 250);
+  --muted-foreground: oklch(46% 0.022 255);
+  --border: oklch(90.5% 0.008 255);
+  --ring: oklch(72% 0.16 65);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-strong: var(--primary-strong);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+
+  --font-heading: var(--font-display);
+  --font-body: var(--font-text);
+  --font-sans: var(--font-text);
+}
+
+@theme {
+  --text-fluid-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+  --text-fluid-base: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+  --text-fluid-lg: clamp(1.25rem, 1rem + 1.25vw, 1.75rem);
+  --text-fluid-xl: clamp(1.75rem, 1.2rem + 2.75vw, 3rem);
+  --text-fluid-2xl: clamp(2.4rem, 1.5rem + 4vw, 4.75rem);
+
+  --spacing-section: clamp(4rem, 8vw, 8rem);
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+
+  --animate-marquee: marquee 60s linear infinite;
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+}
+
+@layer base {
+  * { border-color: var(--border); }
+  html { scroll-behavior: smooth; scroll-padding-top: 6rem; }
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-text), sans-serif;
+  }
+  h1, h2, h3 { font-family: var(--font-display), sans-serif; text-wrap: balance; }
+  p { text-wrap: pretty; }
+  :focus-visible { outline: 2px solid var(--ring); outline-offset: 3px; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+}
+
+@layer components {
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 999px;
+    padding: 0.8rem 1.35rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: transform 140ms var(--ease-out), background-color 160ms var(--ease-out),
+      color 160ms var(--ease-out), box-shadow 160ms var(--ease-out);
+  }
+  .btn:active { transform: scale(0.97); }
+  .btn-accent { background: var(--accent); color: var(--accent-foreground); }
+  .btn-accent:hover { background: var(--accent-strong); }
+  .btn-ghost-light { color: var(--primary-foreground); box-shadow: inset 0 0 0 1px oklch(100% 0 0 / 30%); }
+  .btn-ghost-light:hover { background: oklch(100% 0 0 / 10%); }
+  .btn-primary { background: var(--primary); color: var(--primary-foreground); }
+  .btn-primary:hover { background: var(--primary-strong); }
+}
