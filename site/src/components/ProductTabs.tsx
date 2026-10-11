@@ -134,15 +134,14 @@ function ProductDialog({ product, onClose }: { product: Product | null; onClose:
       className="product-dialog m-auto max-h-[92dvh] w-[min(64rem,calc(100vw-1.5rem))] overflow-y-auto overscroll-contain rounded-[1.75rem] bg-surface p-0 text-foreground md:overflow-hidden"
     >
       {product && (
-        <div className="md:grid md:h-[min(92dvh,48rem)] md:grid-cols-[0.9fr_1.1fr] md:grid-rows-[minmax(0,1fr)]">
-          <div className="relative flex min-h-56 items-center justify-center bg-white p-8 md:h-full md:p-10">
+        <div className="md:grid md:h-[min(92dvh,48rem)] md:grid-cols-[1.1fr_1fr] md:grid-rows-[minmax(0,1fr)]">
+          <div className="relative h-[46dvh] bg-white md:h-full">
             <Image
               src={`/images/products/${product.img}.jpg`}
               alt={product.name}
-              width={product.w}
-              height={product.h}
-              sizes="(min-width: 768px) 40vw, 90vw"
-              className="max-h-[40dvh] w-auto object-contain mix-blend-multiply md:max-h-[60dvh]"
+              fill
+              sizes="(min-width: 768px) 45vw, 100vw"
+              className="object-contain p-4 mix-blend-multiply sm:p-6"
             />
           </div>
           <div className="flex flex-col border-t md:min-h-0 md:border-l md:border-t-0">
