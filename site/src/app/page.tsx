@@ -538,7 +538,15 @@ export default function Home() {
           <div className="mt-14 flex flex-col gap-2 border-t border-primary-foreground/15 pt-6 text-xs text-primary-foreground/55 sm:flex-row sm:justify-between">
             <p>© ALC Energy S.A.C. · RUC {site.ruc}. Todos los derechos reservados.</p>
             <p>
-              Hecho por <span className="font-semibold text-primary-foreground/80">@RainCode</span>
+              Hecho por{" "}
+              <a
+                href="https://instagram.com/rain17.ff"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-primary-foreground/80 underline-offset-2 hover:text-primary-foreground hover:underline"
+              >
+                @RainCode
+              </a>
             </p>
           </div>
         </div>
