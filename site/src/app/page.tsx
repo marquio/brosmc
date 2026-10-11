@@ -4,21 +4,22 @@ import {
   Award,
   ClipboardCheck,
   Clock,
-  Factory,
   Headset,
   Leaf,
+  Mail,
   MapPin,
   MessageCircle,
+  Navigation,
   Phone,
   ScrollText,
-  Wrench,
-  Truck,
   CalendarCheck,
 } from "lucide-react";
 import { Header } from "@/components/Header";
 import { Reveal } from "@/components/Reveal";
 import { TransformerArt } from "@/components/TransformerArt";
-import { clients, nav, site, whatsappHref } from "@/lib/site";
+import { ProductTabs } from "@/components/ProductTabs";
+import { WhatsAppWidget } from "@/components/WhatsAppWidget";
+import { cellphones, clients, nav, services, site, whatsappHref } from "@/lib/site";
 
 const features = [
   {
@@ -53,31 +54,6 @@ const features = [
   },
 ];
 
-const products = [
-  { n: "01", title: "Transformadores eléctricos", text: "De distribución, en aceite y tipo seco." },
-  { n: "02", title: "Autotransformadores", text: "Para ajustar niveles de tensión en tu red." },
-  { n: "03", title: "Subestaciones eléctricas", text: "Incluye subestaciones compactas." },
-  { n: "04", title: "Tableros eléctricos", text: "Para distribución y control eléctrico." },
-];
-
-const services = [
-  {
-    icon: Factory,
-    title: "Fabricación",
-    text: "Transformadores de distribución en aceite y tipo seco, autotransformadores y subestaciones compactas.",
-  },
-  {
-    icon: Truck,
-    title: "Comercialización",
-    text: "Transformadores, estabilizadores, UPS y tableros eléctricos con garantía.",
-  },
-  {
-    icon: Wrench,
-    title: "Reparación y mantenimiento",
-    text: "Reparamos todo tipo de transformadores de distribución en aceite y tipo seco.",
-  },
-];
-
 export default function Home() {
   const logoTrack = [...clients, ...clients];
 
@@ -96,25 +72,22 @@ export default function Home() {
         <section id="inicio" className="px-3 pt-2 sm:px-6">
           <div className="relative mx-auto max-w-7xl">
             <div className="relative overflow-hidden rounded-[1.75rem] bg-primary-strong text-primary-foreground">
-              <div
-                aria-hidden
-                className="absolute inset-0 opacity-[0.07]"
-                style={{
-                  backgroundImage:
-                    "linear-gradient(currentColor 1px, transparent 1px), linear-gradient(90deg, currentColor 1px, transparent 1px)",
-                  backgroundSize: "48px 48px",
-                }}
+              <Image
+                src="/images/hero-subestacion.jpg"
+                alt=""
+                fill
+                priority
+                sizes="(min-width: 1280px) 1280px, 100vw"
+                className="object-cover object-[70%_40%]"
               />
               <div
                 aria-hidden
-                className="absolute -right-40 -top-40 size-[34rem] rounded-full opacity-40 blur-3xl"
-                style={{ background: "radial-gradient(closest-side, oklch(60% 0.09 250), transparent)" }}
+                className="absolute inset-0 bg-[linear-gradient(90deg,oklch(20%_0.04_255/0.92)_0%,oklch(20%_0.04_255/0.7)_45%,oklch(20%_0.04_255/0.1)_80%)] max-lg:bg-[linear-gradient(180deg,oklch(20%_0.04_255/0.55)_0%,oklch(20%_0.04_255/0.85)_60%)]"
               />
-              <TransformerArt className="pointer-events-none absolute -right-16 bottom-6 hidden h-[80%] text-primary-foreground/[0.13] md:block lg:right-[3%]" />
 
-              <div className="relative grid gap-10 px-6 pb-40 pt-14 sm:px-10 sm:pt-20 md:pb-44 lg:grid-cols-[1.25fr_1fr] lg:px-14 lg:pb-48 lg:pt-24">
+              <div className="relative grid gap-10 px-6 pb-40 pt-14 sm:px-10 sm:pt-20 md:pb-44 lg:grid-cols-[1.25fr_1fr] lg:px-14 lg:pb-52 lg:pt-28">
                 <Reveal>
-                  <p className="mb-6 inline-flex items-center gap-2 rounded-full bg-primary-foreground/10 px-3.5 py-1.5 text-sm font-medium">
+                  <p className="mb-6 inline-flex items-center gap-2 rounded-full bg-primary-foreground/12 px-3.5 py-1.5 text-sm font-medium backdrop-blur-sm">
                     <span className="size-1.5 rounded-full bg-accent" aria-hidden />
                     Empresa peruana · Lima
                   </p>
@@ -122,37 +95,44 @@ export default function Home() {
                     Ingeniería en la fabricación de{" "}
                     <span className="text-accent">transformadores eléctricos</span>
                   </h1>
-                  <p className="mt-6 max-w-[46ch] text-fluid-base text-primary-foreground/75">
+                  <p className="mt-6 max-w-[46ch] text-fluid-base text-primary-foreground/85">
                     Fabricamos, vendemos y reparamos transformadores de distribución en aceite y
                     tipo seco. Para minería, distribuidoras eléctricas y la industria.
                   </p>
                   <div className="mt-9 flex flex-wrap items-center gap-3">
-                    <a href={whatsappHref("Hola ALC Energy, quisiera cotizar un transformador.")} className="btn btn-accent">
+                    <a
+                      href={whatsappHref("Hola ALC Energy, quisiera cotizar un transformador.")}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn-accent"
+                    >
                       Cotizar ahora
                       <ArrowUpRight aria-hidden className="size-4" />
                     </a>
-                    <a href="#productos" className="btn btn-ghost-light">
+                    <a href="#productos" className="btn btn-ghost-light backdrop-blur-sm">
                       Ver productos
                     </a>
                   </div>
                 </Reveal>
 
-                <Reveal delay={0.15} className="hidden items-start justify-end lg:flex">
-                  <figure className="w-60 rounded-2xl bg-primary-foreground/10 p-2 backdrop-blur-sm">
-                    <Image
-                      src="/images/transformers.jpg"
-                      alt="Transformadores de distribución con placa ALC"
-                      width={470}
-                      height={416}
-                      priority
-                      className="aspect-[4/3.4] w-full rounded-xl object-cover"
-                    />
+                <Reveal delay={0.15} className="hidden items-end justify-end lg:flex">
+                  <figure className="w-64 rounded-2xl bg-primary-foreground/15 p-2 backdrop-blur-md">
+                    <div className="rounded-xl bg-[#eceef0] p-3">
+                      <Image
+                        src="/images/transformador-500kva.jpg"
+                        alt="Transformadores de distribución ALC de 500 kVA"
+                        width={996}
+                        height={996}
+                        sizes="256px"
+                        className="aspect-[4/3.3] w-full object-contain mix-blend-multiply"
+                      />
+                    </div>
                     <figcaption className="flex items-center justify-between gap-2 px-2 pb-1 pt-3 text-sm">
-                      Transformadores ALC
+                      Conoce nuestros equipos
                       <a
                         href="#productos"
                         aria-label="Ver productos"
-                        className="inline-flex size-7 items-center justify-center rounded-full bg-primary-foreground/15 transition-colors hover:bg-primary-foreground/25"
+                        className="inline-flex size-7 items-center justify-center rounded-full bg-primary-foreground/20 transition-colors hover:bg-primary-foreground/30"
                       >
                         <ArrowUpRight aria-hidden className="size-3.5" />
                       </a>
@@ -264,8 +244,8 @@ export default function Home() {
 
         {/* PRODUCTOS */}
         <section id="productos" aria-labelledby="productos-titulo" className="py-section">
-          <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[1.1fr_1fr] lg:gap-16">
-            <div className="flex flex-col">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6">
+            <div className="grid gap-6 md:grid-cols-2 md:items-end">
               <Reveal>
                 <p className="text-sm font-semibold uppercase tracking-[0.14em] text-accent-strong">
                   Productos
@@ -274,99 +254,73 @@ export default function Home() {
                   id="productos-titulo"
                   className="mt-3 text-fluid-xl font-semibold leading-[1.1] tracking-[-0.02em]"
                 >
-                  Equipos eléctricos,{" "}
+                  Equipos y materiales,{" "}
                   <span className="font-normal text-muted-foreground">
                     para cada etapa de tu red.
                   </span>
                 </h2>
-                <a href={whatsappHref("Hola ALC Energy, quisiera información de sus productos.")} className="btn btn-primary mt-7">
-                  Solicitar ficha técnica
-                  <ArrowUpRight aria-hidden className="size-4" />
-                </a>
               </Reveal>
-
-              <Reveal delay={0.1} className="mt-auto pt-12">
-                <ul className="grid gap-x-8 sm:grid-cols-2">
-                  {products.map((p) => (
-                    <li key={p.n} className="border-t py-6">
-                      <span className="font-heading text-sm tabular-nums text-muted-foreground">
-                        {p.n}
-                      </span>
-                      <h3 className="mt-2 text-lg font-semibold">{p.title}</h3>
-                      <p className="mt-1 text-[0.95rem] text-muted-foreground">{p.text}</p>
-                      <a
-                        href="#contacto"
-                        className="mt-3 inline-block text-sm font-semibold underline decoration-accent decoration-2 underline-offset-4 hover:decoration-accent-strong"
-                      >
-                        Consultar
-                        <span className="sr-only"> sobre {p.title.toLowerCase()}</span>
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-                <p className="border-t pt-5 text-sm text-muted-foreground">
-                  También comercializamos estabilizadores y UPS.
+              <Reveal delay={0.1}>
+                <p className="max-w-[44ch] text-fluid-base text-muted-foreground md:ml-auto">
+                  Transformadores fabricados según IEC PUB 76 e ITINTEC 370.002, equipos
+                  electrónicos y los materiales para su mantenimiento.
                 </p>
               </Reveal>
             </div>
-
-            <Reveal delay={0.15} className="relative">
-              <div className="relative h-full min-h-[22rem] overflow-hidden rounded-[1.75rem] bg-primary">
-                <Image
-                  src="/images/transformers.jpg"
-                  alt="Transformadores de distribución ALC Energy con aisladores de alta tensión"
-                  fill
-                  sizes="(min-width: 1024px) 45vw, 100vw"
-                  className="object-cover"
-                />
-                <div className="absolute inset-x-4 bottom-4 rounded-2xl bg-surface/90 p-5 backdrop-blur-md">
-                  <p className="font-heading font-semibold">Transformadores en aceite y tipo seco</p>
-                  <p className="mt-1 text-sm text-muted-foreground">
-                    Según normas IEC PUB 76 e ITINTEC 370.002.
-                  </p>
-                </div>
-              </div>
+            <Reveal delay={0.1} className="mt-10">
+              <ProductTabs />
             </Reveal>
           </div>
         </section>
 
         {/* EMPRESA */}
-        <section
-          id="empresa"
-          aria-labelledby="empresa-titulo"
-          className="px-3 sm:px-6"
-        >
+        <section id="empresa" aria-labelledby="empresa-titulo" className="px-3 sm:px-6">
           <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[1.75rem] bg-primary-strong px-6 py-section text-primary-foreground sm:px-10 lg:px-14">
-            <TransformerArt className="pointer-events-none absolute -bottom-24 -right-24 h-[30rem] text-primary-foreground/10" />
-            <div className="relative grid gap-12 lg:grid-cols-[1fr_1.2fr]">
+            <TransformerArt className="pointer-events-none absolute -bottom-24 -left-24 h-[30rem] text-primary-foreground/[0.07]" />
+            <div className="relative grid gap-12 lg:grid-cols-[1.15fr_1fr] lg:items-center">
               <Reveal>
                 <p className="text-sm font-semibold uppercase tracking-[0.14em] text-accent">
-                  Empresa
+                  Empresa · Reseña histórica
                 </p>
                 <h2
                   id="empresa-titulo"
                   className="mt-3 text-fluid-xl font-semibold leading-[1.1] tracking-[-0.02em]"
                 >
-                  Acerca de nosotros
+                  Socio de las principales empresas eléctricas{" "}
+                  <span className="font-normal text-primary-foreground/60">e industrias del Perú.</span>
                 </h2>
+                <div className="mt-8 space-y-5 text-fluid-base leading-relaxed text-primary-foreground/80">
+                  <p>
+                    <strong className="font-semibold text-primary-foreground">ALC Energy S.A.C.</strong>{" "}
+                    es una empresa peruana dedicada a la fabricación, mantenimiento, venta y
+                    reparación de todo tipo de transformadores eléctricos de distribución en aceite
+                    y tipo seco, tableros eléctricos, subestaciones, estabilizadores y UPS. Cumplimos
+                    estrictamente con normas nacionales (ITINTEC 370.002) e internacionales (IEC PUB
+                    76), y garantizamos la calidad de todos nuestros equipos.
+                  </p>
+                  <p>
+                    Nuestro compromiso es entregar productos confiables técnica y económicamente. El
+                    diseño compacto de nuestros equipos nos permite ofrecer los mejores precios en el
+                    mercado nacional e internacional.
+                  </p>
+                </div>
                 <ul className="mt-8 flex flex-wrap gap-2 text-sm" aria-label="Normas que cumplimos">
                   <li className="rounded-full bg-primary-foreground/10 px-3.5 py-1.5">IEC PUB 76</li>
                   <li className="rounded-full bg-primary-foreground/10 px-3.5 py-1.5">ITINTEC 370.002</li>
                   <li className="rounded-full bg-primary-foreground/10 px-3.5 py-1.5">RUC {site.ruc}</li>
                 </ul>
               </Reveal>
-              <Reveal delay={0.1} className="space-y-5 text-fluid-base leading-relaxed text-primary-foreground/80">
-                <p>
-                  <strong className="font-semibold text-primary-foreground">ALC Energy S.A.C.</strong>{" "}
-                  es una empresa peruana dedicada a la fabricación, comercialización y reparación de
-                  todo tipo de transformadores de distribución en aceite y tipo seco,
-                  estabilizadores, UPS, tableros eléctricos y subestaciones compactas.
-                </p>
-                <p>
-                  Cumplimos estrictamente con normas nacionales e internacionales (IEC PUB 76;
-                  ITINTEC 370.002). Nuestro compromiso es entregar productos confiables, técnica y
-                  económicamente, y aportar a la solución de problemas ambientales.
-                </p>
+              <Reveal delay={0.1}>
+                <div className="rounded-[1.5rem] bg-[#eceef0] p-6 sm:p-10">
+                  <Image
+                    src="/images/transformador-500kva.jpg"
+                    alt="Dos transformadores de distribución ALC en aceite, de 10-22.9 kV y 500 kVA"
+                    width={996}
+                    height={996}
+                    sizes="(min-width: 1024px) 40vw, 90vw"
+                    className="mx-auto w-full max-w-md mix-blend-multiply"
+                  />
+                </div>
               </Reveal>
             </div>
           </div>
@@ -383,22 +337,35 @@ export default function Home() {
                 id="servicios-titulo"
                 className="mt-3 text-fluid-xl font-semibold leading-[1.1] tracking-[-0.02em]"
               >
-                Del taller a tu subestación,{" "}
-                <span className="font-normal text-muted-foreground">un solo proveedor.</span>
+                Fabricación, mantenimiento y reparación,{" "}
+                <span className="font-normal text-muted-foreground">en taller y en campo.</span>
               </h2>
             </Reveal>
 
-            <div className="mt-12 grid gap-4 md:grid-cols-3">
-              {services.map(({ icon: Icon, title, text }, i) => (
-                <Reveal key={title} delay={0.05 * i}>
-                  <article className="h-full rounded-3xl bg-surface p-7 shadow-[inset_0_0_0_1px_var(--border)] sm:p-8">
-                    <Icon aria-hidden className="size-6 text-accent-strong" />
-                    <h3 className="mt-6 text-xl font-semibold">{title}</h3>
-                    <p className="mt-2 leading-relaxed text-muted-foreground">{text}</p>
-                  </article>
-                </Reveal>
+            <ul className="mt-12 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-6">
+              {services.map((sv, i) => (
+                <li
+                  key={sv.img}
+                  className={`${i < 2 ? "lg:col-span-3" : "lg:col-span-2"} ${i === 0 ? "col-span-2" : ""}`}
+                >
+                  <Reveal delay={0.05 * i} className="h-full">
+                    <figure className="group relative h-full overflow-hidden rounded-3xl bg-muted">
+                      <Image
+                        src={sv.img}
+                        alt={sv.title}
+                        width={489}
+                        height={305}
+                        sizes="(min-width: 1024px) 40vw, 50vw"
+                        className={`w-full object-cover ${i < 2 ? "aspect-[16/10]" : "aspect-[4/3.4]"}`}
+                      />
+                      <figcaption className="absolute inset-x-0 bottom-0 bg-[linear-gradient(transparent,oklch(18%_0.03_255/0.85))] p-4 pt-12 text-sm font-semibold text-white sm:p-5 sm:pt-14 sm:text-base">
+                        {sv.title}
+                      </figcaption>
+                    </figure>
+                  </Reveal>
+                </li>
               ))}
-            </div>
+            </ul>
 
             <Reveal delay={0.1}>
               <div
@@ -446,7 +413,7 @@ export default function Home() {
                 cotización.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
-                <a href={whatsappHref()} className="btn btn-accent">
+                <a href={whatsappHref()} target="_blank" rel="noopener noreferrer" className="btn btn-accent">
                   <MessageCircle aria-hidden className="size-4" />
                   Escríbenos por WhatsApp
                 </a>
@@ -456,33 +423,77 @@ export default function Home() {
                 </a>
               </div>
 
-              <dl className="mt-10 grid gap-5 sm:grid-cols-2">
+              <dl className="mt-10 grid gap-6 sm:grid-cols-2">
                 <div className="flex gap-3">
-                  <Clock aria-hidden className="mt-0.5 size-5 shrink-0 text-accent-strong" />
+                  <Phone aria-hidden className="mt-0.5 size-5 shrink-0 text-accent-strong" />
                   <div>
-                    <dt className="font-semibold">Horario</dt>
-                    <dd className="text-muted-foreground">{site.hoursShort}</dd>
+                    <dt className="font-semibold">Celulares</dt>
+                    <dd>
+                      <ul className="mt-1 space-y-1">
+                        {cellphones.map((c) => (
+                          <li key={c}>
+                            <a href={`tel:+51${c.replaceAll(" ", "")}`} className="tabular-nums text-muted-foreground hover:text-foreground">
+                              {c}
+                            </a>
+                          </li>
+                        ))}
+                        <li>
+                          <a href={site.phoneHref} className="tabular-nums text-muted-foreground hover:text-foreground">
+                            Fijo {site.phoneDisplay}
+                          </a>
+                        </li>
+                      </ul>
+                    </dd>
                   </div>
                 </div>
-                <div className="flex gap-3">
-                  <MapPin aria-hidden className="mt-0.5 size-5 shrink-0 text-accent-strong" />
-                  <div>
-                    <dt className="font-semibold">Ubicación</dt>
-                    <dd className="text-muted-foreground">{site.address}</dd>
+                <div className="space-y-6">
+                  <div className="flex gap-3">
+                    <Mail aria-hidden className="mt-0.5 size-5 shrink-0 text-accent-strong" />
+                    <div>
+                      <dt className="font-semibold">Correo</dt>
+                      <dd>
+                        <a href={`mailto:${site.email}`} className="text-muted-foreground underline-offset-4 hover:text-foreground hover:underline">
+                          {site.email}
+                        </a>
+                      </dd>
+                    </div>
+                  </div>
+                  <div className="flex gap-3">
+                    <Clock aria-hidden className="mt-0.5 size-5 shrink-0 text-accent-strong" />
+                    <div>
+                      <dt className="font-semibold">Horario</dt>
+                      <dd className="text-muted-foreground">{site.hoursShort}</dd>
+                    </div>
+                  </div>
+                  <div className="flex gap-3">
+                    <MapPin aria-hidden className="mt-0.5 size-5 shrink-0 text-accent-strong" />
+                    <div>
+                      <dt className="font-semibold">Dirección</dt>
+                      <dd className="text-muted-foreground">{site.address}</dd>
+                    </div>
                   </div>
                 </div>
               </dl>
             </Reveal>
 
             <Reveal delay={0.1}>
-              <div className="overflow-hidden rounded-[1.75rem] bg-surface p-2 shadow-[inset_0_0_0_1px_var(--border)]">
+              <div className="relative overflow-hidden rounded-[1.75rem] bg-surface p-2 shadow-[inset_0_0_0_1px_var(--border)]">
                 <iframe
                   title="Ubicación de ALC Energy en Google Maps"
                   src={`https://www.google.com/maps?q=${encodeURIComponent(site.mapQuery)}&output=embed`}
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  className="block h-[22rem] w-full rounded-[1.4rem] grayscale-[35%] lg:h-[26rem]"
+                  className="block h-[22rem] w-full rounded-[1.4rem] grayscale-[35%] lg:h-[30rem]"
                 />
+                <a
+                  href={site.mapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-primary absolute bottom-5 right-5"
+                >
+                  <Navigation aria-hidden className="size-4" />
+                  Cómo llegar
+                </a>
               </div>
             </Reveal>
           </div>
@@ -519,6 +530,9 @@ export default function Home() {
               <a href={site.phoneHref} className="flex items-center gap-2 hover:text-primary-foreground">
                 <Phone aria-hidden className="size-4" /> {site.phoneDisplay}
               </a>
+              <a href={`mailto:${site.email}`} className="flex items-center gap-2 hover:text-primary-foreground">
+                <Mail aria-hidden className="size-4" /> {site.email}
+              </a>
               <a href={site.facebook} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-primary-foreground">
                 <ArrowUpRight aria-hidden className="size-4" /> Facebook
               </a>
@@ -541,13 +555,7 @@ export default function Home() {
         </div>
       </footer>
 
-      <a
-        href={whatsappHref()}
-        aria-label="Realiza tu consulta por WhatsApp"
-        className="btn btn-accent fixed bottom-5 right-5 z-30 !p-4 shadow-lg shadow-primary-strong/20"
-      >
-        <MessageCircle aria-hidden className="size-6" />
-      </a>
+      <WhatsAppWidget />
     </>
   );
 }

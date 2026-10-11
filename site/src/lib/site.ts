@@ -6,21 +6,38 @@ export const site = {
   url: "https://alcenergy.com.pe",
   phoneDisplay: "(01) 7151 443",
   phoneHref: "tel:+5117151443",
-  // TODO: número de WhatsApp con código de país, solo dígitos (ej. "51987654321").
-  // Mientras esté vacío, los botones de WhatsApp llaman al teléfono fijo.
-  whatsapp: "",
+  // Número principal de WhatsApp (Departamento de Ventas), con código de país.
+  whatsapp: "51992176259",
+  email: "ventas@alcenergy.com.pe",
   hours: "Desde las 8:00 a.m. hasta las 7:00 p.m.",
   hoursShort: "8:00 a.m. – 7:00 p.m.",
-  address: "Puente Piedra, Lima, Perú",
-  mapQuery: "ALC Energy S.A.C. Puente Piedra Lima",
+  address: "Av. Los Pinos Mz. E Lote 17-A, Urb. Shangrila, primera etapa, Puente Piedra, Lima",
+  addressShort: "Av. Los Pinos, Puente Piedra, Lima",
+  mapsUrl: "https://maps.app.goo.gl/FNvK8L7hZrAThvoL6",
+  mapQuery: "ALC ENERGY, Av. los Pinos 8, Puente Piedra 15116",
   facebook: "https://www.facebook.com/alcenergy/",
   // TODO: enlace de LinkedIn de la empresa.
   linkedin: "",
 };
 
-export function whatsappHref(message = "Hola ALC Energy, quisiera hacer una consulta.") {
-  if (!site.whatsapp) return site.phoneHref;
-  return `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(message)}`;
+export const cellphones = ["992 176 259", "963 429 023", "999 908 262", "969 343 909", "948 354 045"];
+
+// Operadores del botón de WhatsApp.
+// OJO: la asignación número ↔ persona sigue el orden de las capturas; confirmar con el cliente.
+export const whatsappTeam = [
+  { role: "Departamento de Ventas", name: "ALC Energy", phone: "51992176259", photo: "/images/mark-dark.png", isLogo: true },
+  { role: "Ejecutiva de Ventas", name: "Lisbet Leyva", phone: "51963429023", photo: "/images/team/lisbet-leyva.jpg" },
+  { role: "Ejecutiva de Ventas", name: "Ruth Rodriguez", phone: "51999908262", photo: "/images/team/ruth-rodriguez.jpg" },
+  { role: "Ejecutiva de Ventas", name: "Arcinia Huayana Ricra", phone: "51969343909", photo: "/images/team/arcinia-huayana.jpg" },
+  { role: "Ejecutiva de Ventas", name: "Milagros Miranda", phone: "51948354045", photo: "/images/team/milagros-miranda.jpg" },
+];
+
+export function whatsappHref(
+  message = "Hola ALC Energy, quisiera hacer una consulta.",
+  phone = site.whatsapp,
+) {
+  if (!phone) return site.phoneHref;
+  return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 }
 
 export const nav = [
@@ -56,4 +73,46 @@ export const clients = [
   { name: "Santo Domingo Contratistas Generales S.A.", file: "santo-domingo", w: 352, h: 103 },
   { name: "Sistel", file: "sistel", w: 370, h: 103 },
   { name: "Iriarco S.A.", file: "iriarco", w: 346, h: 51 },
+];
+
+export const productCategories = [
+  {
+    name: "Equipos eléctricos",
+    items: [
+      { name: "Transformadores de distribución en aceite", img: "trafo-aceite", w: 468, h: 432 },
+      { name: "Transformadores secos de aislamiento", img: "trafo-seco-aislamiento", w: 456, h: 360 },
+      { name: "Transformadores integrados de medida", img: "trafo-integrado-medida", w: 492, h: 384 },
+      { name: "Transformadores secos encapsulados en resina", img: "trafo-seco-resina", w: 444, h: 384 },
+      { name: "Transformadores tipo pedestal", img: "trafo-pedestal", w: 485, h: 340 },
+      { name: "Autotransformadores", img: "autotransformador", w: 275, h: 490 },
+      { name: "Subestaciones eléctricas", img: "subestacion", w: 460, h: 360 },
+      { name: "Tableros eléctricos", img: "tablero", w: 430, h: 395 },
+    ],
+  },
+  {
+    name: "Equipos electrónicos",
+    items: [
+      { name: "Estabilizadores de tensión", img: "estabilizador", w: 305, h: 380 },
+      { name: "Rectificadores AC/DC", img: "rectificador", w: 340, h: 310 },
+      { name: "UPS (sistema de alimentación ininterrumpida)", img: "ups", w: 460, h: 330 },
+    ],
+  },
+  {
+    name: "Materiales eléctricos",
+    items: [
+      { name: "Aceite mineral dieléctrico Tulstar tipo II TS-3487", img: "aceite-tulstar", w: 270, h: 387 },
+      { name: "Controlador de temperatura T154", img: "controlador-t154", w: 425, h: 338 },
+      { name: "Sensor termométrico PT100", img: "sensor-pt100", w: 485, h: 340 },
+      { name: "Supresores de pico", img: "supresor", w: 455, h: 185 },
+    ],
+  },
+];
+
+// Títulos provisionales según cada foto; confirmar con el cliente.
+export const services = [
+  { title: "Análisis de aceite dieléctrico", img: "/images/services/servicio-1.jpg" },
+  { title: "Mantenimiento en subestaciones", img: "/images/services/servicio-2.jpg" },
+  { title: "Transformadores de medida", img: "/images/services/servicio-3.jpg" },
+  { title: "Pruebas y reparación de transformadores", img: "/images/services/servicio-4.jpg" },
+  { title: "Mantenimiento de tableros eléctricos", img: "/images/services/servicio-5.jpg" },
 ];

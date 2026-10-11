@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     description,
     locale: "es_PE",
     type: "website",
-    images: ["/images/transformers.jpg"],
+    images: ["/images/hero-subestacion.jpg"],
   },
 };
 
@@ -37,9 +37,11 @@ const jsonLd = {
   name: site.name,
   url: site.url,
   telephone: "+51 1 7151443",
+  email: site.email,
   description,
   address: {
     "@type": "PostalAddress",
+    streetAddress: "Av. Los Pinos Mz. E Lote 17-A, Urb. Shangrila",
     addressLocality: "Puente Piedra",
     addressRegion: "Lima",
     addressCountry: "PE",

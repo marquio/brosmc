@@ -94,3 +94,16 @@
   .btn-primary { background: var(--primary); color: var(--primary-foreground); }
   .btn-primary:hover { background: var(--primary-strong); }
 }
+
+/* Panel de WhatsApp: escala desde el botón (abajo a la izquierda). */
+.wa-panel {
+  transform-origin: bottom left;
+  opacity: 0;
+  transform: translateY(8px) scale(0.96);
+  pointer-events: none;
+  transition: opacity 180ms var(--ease-out), transform 220ms var(--ease-out);
+}
+.wa-panel.is-open { opacity: 1; transform: none; pointer-events: auto; }
+@media (prefers-reduced-motion: reduce) {
+  .wa-panel { transform: none; transition: opacity 180ms var(--ease-out); }
+}
